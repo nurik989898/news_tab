@@ -5,23 +5,33 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.news_tab.R;
 import com.example.news_tab.databinding.FragmentHomeBinding;
+import com.example.news_tab.interfaces.OnClickListener;
 import com.example.news_tab.models.News;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private NewsAdaptor adaptor;
+    private boolean isediting = false;
+    private int index;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adaptor = new NewsAdaptor();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,20 +53,49 @@ public class HomeFragment extends Fragment {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                open();
+                open(null);
+                isediting = false;
             }
         });
         getParentFragmentManager().setFragmentResultListener("rk_news", getViewLifecycleOwner(), new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                News news = (News) result.getSerializable("news");
-                Log.e("Home","text =" + news.getTitle());
+                News news = (News) result.getSerializable("text");
+                if (isediting){
+                    adaptor.insertItem(news, index);
+                }else{
+                    adaptor.addItem(news);
+                    Log.e("Home","text =" + news.getTitle());
+                }
+
+            }
+        });
+        binding.recyclerView.setAdapter(adaptor);
+        adaptor.setOnItemClickListener(new OnClickListener() {
+            @Override
+            public void onItemClick(int position) {
+            News news = adaptor.getItem(position);
+                Toast.makeText(requireContext(), news.getTitle(), Toast.LENGTH_SHORT).show();
+                isediting =true;
+                open(news);
+                index = position;
+            }
+
+
+            @Override
+            public void onItemLongClick(int position) {
+
             }
         });
     }
 
-    private void open() {
+
+
+    private void open(News news) {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-        navController.navigate(R.id.newsFragment);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("task", news);
+        navController.navigate(R.id.newsFragment,bundle);
+
     }
 }
