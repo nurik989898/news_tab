@@ -6,6 +6,8 @@
     android:id="@+id/item_news"
     android:layout_height="wrap_content">
     <TextView
+        app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/textTitle"
         android:textSize="18sp"
         android:layout_width="wrap_content"

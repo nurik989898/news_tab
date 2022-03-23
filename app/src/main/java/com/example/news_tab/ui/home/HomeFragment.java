@@ -86,6 +86,11 @@ public class HomeFragment extends Fragment {
             public void onItemLongClick(int position) {
 
             }
+
+            @Override
+            public void itemClick() {
+
+            }
         });
     }
 
