@@ -29,9 +29,9 @@ public class BoardAdaptor extends RecyclerView.Adapter<BoardAdaptor.ViewHolder> 
     public BoardAdaptor(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
         list = new ArrayList<>();
-        list.add(new Board("salsm", "this is good", R.drawable.ic_assignment));
-        list.add(new Board("sal", "hello friends", R.drawable.ic_add));
-        list.add(new Board("sam", "ololol", R.drawable.ic_notifications_black_24dp));
+        list.add(new Board("Salam", "Kyrghyz OPEN", R.drawable.ic_assignment));
+        list.add(new Board("Hello", "English OPEN", R.drawable.ic_add));
+        list.add(new Board("Annyuong", "Korean OPEN", R.drawable.ic_notifications_black_24dp));
     }
 
     @NonNull

@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.news_tab.Prefs;
 import com.example.news_tab.R;
 import com.example.news_tab.databinding.FragmentBoardBinding;
 import com.example.news_tab.databinding.FragmentNewsBinding;
@@ -45,6 +46,12 @@ public class BoardFragment extends Fragment implements OnClickListener {
                         requireActivity().finish();
                     }
                 });
+        binding.buttonSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               close();
+            }
+        });
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -76,6 +83,12 @@ public class BoardFragment extends Fragment implements OnClickListener {
 
     @Override
     public void itemClick() {
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+        navController.navigateUp();
+    }
+    public void close(){
+        Prefs prefs = new Prefs(requireContext());
+        prefs.saveBoardState();
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
         navController.navigateUp();
     }
