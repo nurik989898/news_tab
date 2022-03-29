@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.news_tab.App;
 import com.example.news_tab.R;
 import com.example.news_tab.databinding.FragmentHomeBinding;
 import com.example.news_tab.databinding.FragmentNewsBinding;
@@ -63,7 +64,7 @@ public class NewsFragment extends Fragment {
             Toast.makeText(requireContext(), "News was successfully updated", Toast.LENGTH_SHORT).show();
         }
         News news=new News(text,System.currentTimeMillis());
-
+        App.getDatabase().newsDao().insert(news);
         bundle.putSerializable("text", news);
         getParentFragmentManager().setFragmentResult("rk_news",bundle);
         close();

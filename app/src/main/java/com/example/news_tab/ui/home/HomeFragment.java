@@ -15,10 +15,13 @@ import androidx.fragment.app.FragmentResultListener;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.news_tab.App;
 import com.example.news_tab.R;
 import com.example.news_tab.databinding.FragmentHomeBinding;
 import com.example.news_tab.interfaces.OnClickListener;
 import com.example.news_tab.models.News;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -31,6 +34,8 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         adaptor = new NewsAdaptor();
+        List<News> list = App.getDatabase().newsDao().getAll();
+        adaptor.addList(list);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,

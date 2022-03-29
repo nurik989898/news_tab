@@ -23,6 +23,7 @@ import com.example.news_tab.models.News;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class NewsAdaptor extends RecyclerView.Adapter<NewsAdaptor.ViewHolder> {
@@ -67,6 +68,11 @@ public class NewsAdaptor extends RecyclerView.Adapter<NewsAdaptor.ViewHolder> {
     public void insertItem(News news, int index) {
         list.set(index, news);
         notifyItemChanged(index);
+    }
+
+    public void addList(List<News> list) {
+        this.list.addAll(list);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
