@@ -28,7 +28,7 @@ import java.util.Locale;
 
 public class NewsAdaptor extends RecyclerView.Adapter<NewsAdaptor.ViewHolder> {
     private Context context;
-    private ArrayList<News> list;
+    private List<News> list;
     private OnClickListener onItemClickListener;
 
     public NewsAdaptor() {
@@ -40,6 +40,11 @@ public class NewsAdaptor extends RecyclerView.Adapter<NewsAdaptor.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         return new ViewHolder(ItemNewsBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+    }
+
+    public void setList(List<News> list) {
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -71,7 +76,7 @@ public class NewsAdaptor extends RecyclerView.Adapter<NewsAdaptor.ViewHolder> {
     }
 
     public void addList(List<News> list) {
-        this.list.addAll(list);
+        this.list = list;
         notifyDataSetChanged();
     }
 

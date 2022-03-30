@@ -15,4 +15,11 @@ public interface NewsDao {
 
     @Insert
     void insert(News news);
+
+    @Query("SELECT * FROM news ORDER BY title ASC")
+    List<News> sort();
+    @Query("SELECT * FROM news WHERE title LIKE '%' || :search || '%'")
+    List<News>getSearch(String search);
+
+
 }
