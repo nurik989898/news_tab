@@ -12,10 +12,11 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.11302083333333333" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2453125" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_recicler.xml" value="0.10208333333333333" />
         <entry key="app/src/main/res/layout/item_news.xml" value="0.2453125" />
         <entry key="app/src/main/res/layout/item_pager_boadr.xml" value="0.2453125" />
+        <entry key="app/src/main/res/layout/item_profile.xml" value="0.11930091185410334" />
         <entry key="app/src/main/res/layout/pager_boadr.xml" value="0.125" />
         <entry key="app/src/main/res/layout/profile_image.xml" value="0.16528117359413202" />
         <entry key="app/src/main/res/layout/recicler_profil.xml" value="0.10208333333333333" />

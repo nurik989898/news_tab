@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.ProfileFragment">
 
    <ImageView
@@ -14,26 +14,24 @@
        app:layout_constraintBottom_toBottomOf="@id/editText"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent"
-        />
+       app:layout_constraintTop_toTopOf="parent" />
 
    <EditText
        android:id="@+id/editText"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       tools:text="Salam"
        app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/barnes"
        app:layout_constraintStart_toStartOf="parent"
-       />
+       app:layout_constraintTop_toBottomOf="@id/barnes"
+       tools:text="Salam" />
 
    <TextView
        android:id="@+id/Shots"
        android:layout_width="50dp"
        android:layout_height="50dp"
+       android:gravity="center"
        android:paddingTop="18dp"
-       android:text="  19 Shots"
-       android:textStyle="bold"
+       android:text="     Shots"
        android:textColor="@color/black"
        app:layout_constraintEnd_toStartOf="@id/follower"
        app:layout_constraintHorizontal_bias="0.284"
@@ -45,37 +43,36 @@
        android:layout_width="65dp"
        android:layout_height="65dp"
        android:paddingTop="18dp"
-       android:text="     337     Followers"
+       android:text="          Followers"
        android:textColor="@color/black"
-       android:textStyle="bold"
+
        app:layout_constraintEnd_toStartOf="@id/following"
        app:layout_constraintStart_toStartOf="@id/barnes"
        app:layout_constraintTop_toBottomOf="@id/editText" />
 
    <TextView
        android:id="@+id/following"
-       android:layout_width="60dp"
+       android:layout_width="62dp"
        android:layout_height="60dp"
-       android:text="    819    Following"
-       android:textColor="@color/black"
        android:paddingTop="18dp"
-       android:textStyle="bold"
-       app:layout_constraintTop_toBottomOf="@id/editText"
+       android:text="               Following"
+       android:textColor="@color/black"
+       app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toEndOf="@id/follower"
-       app:layout_constraintEnd_toEndOf="parent"/>
+       app:layout_constraintTop_toBottomOf="@id/editText" />
+
    <TextView
        android:id="@+id/barnes"
        android:layout_width="200dp"
        android:layout_height="wrap_content"
-       android:text="Heather Barness"
-       android:textStyle="bold"
        android:gravity="center"
-       android:textSize="22dp"
+       android:text="Heather Barness"
        android:textColor="@color/black"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/image"
+       android:textSize="22sp"
+       android:textStyle="bold"
        app:layout_constraintEnd_toEndOf="parent"
-       />
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/image" />
 
    <TextView
        android:id="@+id/shots"
@@ -96,6 +93,7 @@
        android:layout_marginTop="64dp"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintTop_toTopOf="@id/follower" />
+
    <androidx.viewpager.widget.ViewPager
        android:id="@+id/view_pagerone"
        android:layout_width="0dp"
@@ -103,7 +101,57 @@
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/tab_lo"/>
+       app:layout_constraintTop_toBottomOf="@id/tab_lo" />
+
+   <TextView
+       android:id="@+id/number"
+       android:layout_width="60dp"
+       android:layout_height="60dp"
+       android:layout_marginTop="35dp"
+       android:layout_marginEnd="60dp"
+       android:gravity="center"
+       android:text="867"
+       android:textColor="@color/black"
+       android:textSize="26dp"
+       android:textStyle="bold"
+       app:layout_constraintBottom_toTopOf="@+id/following"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintTop_toTopOf="@+id/editText"
+       app:layout_constraintVertical_bias="0.0" />
+
+   <TextView
+       android:id="@+id/textView"
+       android:layout_width="60dp"
+       android:layout_height="60dp"
+       android:layout_marginTop="35dp"
+       android:layout_marginEnd="64dp"
+       android:gravity="center"
+       android:text="337"
+       android:textColor="@color/black"
+       android:textSize="26dp"
+       android:textStyle="bold"
+       app:layout_constraintBottom_toTopOf="@id/follower"
+       app:layout_constraintEnd_toStartOf="@id/number"
+       app:layout_constraintTop_toBottomOf="@id/editText"
+       app:layout_constraintVertical_bias="0.463" />
+
+   <TextView
+       android:id="@+id/textView2"
+       android:layout_width="60dp"
+       android:layout_height="60dp"
+       android:layout_marginTop="35dp"
+       android:layout_marginEnd="80dp"
+       android:gravity="center"
+       android:text="19"
+       android:textColor="@color/black"
+       android:textSize="26dp"
+       android:textStyle="bold"
+       app:layout_constraintBottom_toTopOf="@id/Shots"
+       app:layout_constraintEnd_toStartOf="@id/follower"
+       app:layout_constraintTop_toBottomOf="@id/editText"
+       app:layout_constraintVertical_bias="0.463" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

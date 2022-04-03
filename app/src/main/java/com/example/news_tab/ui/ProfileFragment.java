@@ -107,6 +107,7 @@ public class ProfileFragment extends Fragment {
         viewPagerFragment.add(new ReciclerFragment());
         viewPagerAdaptor.setFragment(viewPagerFragment);
         binding.viewPagerone.setAdapter(viewPagerAdaptor);
+        binding.tabLo.setupWithViewPager(binding.viewPagerone);
         binding.tabLo.getTabAt(0).setIcon(R.drawable.dehaze);
         binding.tabLo.getTabAt(1).setIcon(R.drawable.dashboard_24);
     }
