@@ -12,8 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.news_tab.App;
 import com.example.news_tab.R;
 import com.example.news_tab.databinding.FragmentHomeBinding;
@@ -44,6 +47,10 @@ public class NewsFragment extends Fragment {
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                YoYo.with(Techniques.Shake)
+                        .duration(700)
+                        .repeat(5)
+                        .playOn(binding.editText);
                 save();
             }
         });

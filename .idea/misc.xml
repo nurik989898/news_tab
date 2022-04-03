@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/dashboard_24.xml" value="0.163" />
+        <entry key="app/src/main/res/drawable/dehaze.xml" value="0.163" />
+        <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1405" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2453125" />
         <entry key="app/src/main/res/layout/fragment_board.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.11197916666666667" />
@@ -10,8 +13,12 @@
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.11302083333333333" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2453125" />
+        <entry key="app/src/main/res/layout/fragment_recicler.xml" value="0.10208333333333333" />
         <entry key="app/src/main/res/layout/item_news.xml" value="0.2453125" />
+        <entry key="app/src/main/res/layout/item_pager_boadr.xml" value="0.2453125" />
         <entry key="app/src/main/res/layout/pager_boadr.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/profile_image.xml" value="0.16528117359413202" />
+        <entry key="app/src/main/res/layout/recicler_profil.xml" value="0.10208333333333333" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/menu/men.xml" value="0.1375" />
         <entry key="app/src/main/res/menu/menuu.xml" value="0.17604166666666668" />

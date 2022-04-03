@@ -20,6 +20,8 @@ import androidx.fragment.app.FragmentResultListener;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.news_tab.App;
 import com.example.news_tab.R;
 import com.example.news_tab.databinding.FragmentHomeBinding;

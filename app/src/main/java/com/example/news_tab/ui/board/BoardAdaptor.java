@@ -29,9 +29,9 @@ public class BoardAdaptor extends RecyclerView.Adapter<BoardAdaptor.ViewHolder> 
     public BoardAdaptor(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
         list = new ArrayList<>();
-        list.add(new Board("Salam", "Kyrghyz OPEN", R.drawable.ic_assignment));
-        list.add(new Board("Hello", "English OPEN", R.drawable.ic_add));
-        list.add(new Board("Annyuong", "Korean OPEN", R.drawable.ic_notifications_black_24dp));
+        list.add(new Board("Hello everyone", "Nurik's private app"));
+        list.add(new Board("Available for Android and IOS", "Nurik's private app"));
+        list.add(new Board("Tap to button 'START'", "Nuriks private app"));
     }
 
     @NonNull
@@ -62,11 +62,18 @@ public class BoardAdaptor extends RecyclerView.Adapter<BoardAdaptor.ViewHolder> 
             Board board = list.get(position);
             binding.textTitle.setText(board.getTitle());
             binding.textView.setText(board.getDesc());
-            binding.imageView.setImageResource(board.getImage());
-            if (position == list.size() - 1) {
+            if (position == list.size() - 1){
                 binding.buttonStart.setVisibility(View.VISIBLE);
-            } else {
+            }else{
                 binding.buttonStart.setVisibility(View.INVISIBLE);
+            }
+
+            if (position ==  0) {
+                binding.Lotie.setAnimation(R.raw.bot);
+            } else if (position == 1){
+                binding.Lotie.setAnimation(R.raw.apple);
+            }else{
+                binding.Lotie.setAnimation(R.raw.city);
             }
             binding.buttonStart.setOnClickListener(new View.OnClickListener() {
                 @Override

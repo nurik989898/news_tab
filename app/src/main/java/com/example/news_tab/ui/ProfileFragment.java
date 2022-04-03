@@ -15,6 +15,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,16 +31,23 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.news_tab.MainActivity;
+import com.example.news_tab.Model;
 import com.example.news_tab.Prefs;
 import com.example.news_tab.R;
+import com.example.news_tab.ReciclerFragment;
 import com.example.news_tab.databinding.FragmentNewsBinding;
 import com.example.news_tab.databinding.FragmentProfileBinding;
+
+import java.util.ArrayList;
 
 import javax.xml.transform.Result;
 
 public class ProfileFragment extends Fragment {
+    private ViewPagerAdaptor viewPagerAdaptor;
     private FragmentProfileBinding binding;
     private Uri uri;
+    ArrayList<Model> model = new ArrayList<>();
+    ArrayList<Fragment>viewPagerFragment = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +60,7 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         setHasOptionsMenu(true);
         return binding.getRoot();
+
 
     }
 
@@ -87,7 +98,17 @@ public class ProfileFragment extends Fragment {
 
         }
         saveText();
+        initViewPager();
+    }
 
+    private void initViewPager() {
+        viewPagerAdaptor = new ViewPagerAdaptor(getChildFragmentManager(),0);
+        viewPagerFragment.add(new ReciclerFragment());
+        viewPagerFragment.add(new ReciclerFragment());
+        viewPagerAdaptor.setFragment(viewPagerFragment);
+        binding.viewPagerone.setAdapter(viewPagerAdaptor);
+        binding.tabLo.getTabAt(0).setIcon(R.drawable.dehaze);
+        binding.tabLo.getTabAt(1).setIcon(R.drawable.dashboard_24);
     }
 
     private void nuki() {
@@ -138,6 +159,28 @@ public class ProfileFragment extends Fragment {
         if (MainActivity.prefs.getPic() != null) {
             uri = Uri.parse(MainActivity.prefs.getPic());
             Glide.with(binding.image).load(uri).circleCrop().into(binding.image);
+        }
+    }
+    class ViewPagerAdaptor extends FragmentPagerAdapter{
+        private ArrayList<Fragment> fragment = new ArrayList<>();
+
+        public ViewPagerAdaptor(@NonNull FragmentManager fm, int behavior) {
+            super(fm, behavior);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return fragment.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragment.size();
+        }
+
+        public void setFragment(ArrayList<Fragment> fragment) {
+            this.fragment = fragment;
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.news_tab.room;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.news_tab.models.News;
@@ -13,7 +14,7 @@ public interface NewsDao {
     @Query("SELECT * FROM news")
     List<News> getAll();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(News news);
 
     @Query("SELECT * FROM news ORDER BY title ASC")

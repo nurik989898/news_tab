@@ -37,4 +37,5 @@
         android:name="com.example.news_tab.ui.board.BoardFragment"
         android:label="fragment_board"
         tools:layout="@layout/fragment_board" />
+
 </navigation>
