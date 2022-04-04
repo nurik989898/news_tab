@@ -9,11 +9,11 @@
 
     <!-- TODO: Update blank fragment layout -->
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextFire"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/btn_save"
+        android:id="@+id/btn_saveFire"
         android:text="Save"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"

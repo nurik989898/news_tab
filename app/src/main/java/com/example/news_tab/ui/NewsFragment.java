@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,10 +23,21 @@ import com.example.news_tab.R;
 import com.example.news_tab.databinding.FragmentHomeBinding;
 import com.example.news_tab.databinding.FragmentNewsBinding;
 import com.example.news_tab.models.News;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class NewsFragment extends Fragment {
+    private FirebaseFirestore db;
     private FragmentNewsBinding binding;
     private News news;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        db = FirebaseFirestore.getInstance();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,17 +52,17 @@ public class NewsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         news = (News) requireArguments().getSerializable("task");
         if (news != null){
-            binding.editText.setText(news.getTitle());
+            binding.editTextFire.setText(news.getTitle());
             Log.e("News", "title"+ news.getTitle());
-            binding.btnSave.setText("Edit");
+            binding.btnSaveFire.setText("Edit");
         }
-        binding.btnSave.setOnClickListener(new View.OnClickListener() {
+        binding.btnSaveFire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 YoYo.with(Techniques.Shake)
                         .duration(700)
                         .repeat(5)
-                        .playOn(binding.editText);
+                        .playOn(binding.editTextFire);
                 save();
             }
         });
@@ -58,7 +70,7 @@ public class NewsFragment extends Fragment {
 
     private void save() {
         Bundle bundle = new Bundle();
-        String text = binding.editText.getText().toString();
+        String text = binding.editTextFire.getText().toString();
         if (text.isEmpty()){
             Toast.makeText(requireContext(), "Title is empty!", Toast.LENGTH_SHORT).show();
             return;
@@ -72,9 +84,30 @@ public class NewsFragment extends Fragment {
         }
         News news=new News(text,System.currentTimeMillis());
         App.getDatabase().newsDao().insert(news);
+        addDataToFirestore(news);
         bundle.putSerializable("text", news);
         getParentFragmentManager().setFragmentResult("rk_news",bundle);
-        close();
+    }
+
+    private void addDataToFirestore(News news) {
+        db.collection("news")
+                .add(news)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show();
+                        close();
+                        Log.d("tag", "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(requireContext(), "Failure", Toast.LENGTH_SHORT).show();
+
+                        Log.w("tag", "Error adding document", e);
+                    }
+                });
     }
     private void close() {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
