@@ -9,6 +9,9 @@ public class News implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    public News() {
+    }
+
     public int getId() {
         return id;
     }

@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/layout/fragment_board.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.11197916666666667" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1765625" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.2453125" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.11302083333333333" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.335" />
