@@ -28,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.news_tab.MainActivity;
@@ -37,6 +38,11 @@ import com.example.news_tab.R;
 import com.example.news_tab.ReciclerFragment;
 import com.example.news_tab.databinding.FragmentNewsBinding;
 import com.example.news_tab.databinding.FragmentProfileBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
@@ -118,6 +124,7 @@ public class ProfileFragment extends Fragment {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         mGetContent.launch(intent);
 
+
     }
 
     private void saveText() {
@@ -150,9 +157,36 @@ public class ProfileFragment extends Fragment {
                         uri = intent.getData();
                         Glide.with(binding.image).load(uri).circleCrop().into(binding.image);
                         MainActivity.prefs.savePicture(String.valueOf(uri));
+                        upload(uri);
                     }
                 }
             });
+    ActivityResultLauncher<String> mgGetContent = registerForActivityResult(
+            new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @Override
+        public void onActivityResult(Uri result) {
+            if (result != null){
+                binding.image.setImageURI(result);
+                upload(result);
+            }
+        }
+    });
+
+    private void upload(Uri uri) {
+        StorageReference ref = FirebaseStorage.getInstance().getReference().child("avatar.jpg");
+        ref.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(requireContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(requireContext(), "Failed" +
+                             task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
 
     @Override
     public void onStart() {

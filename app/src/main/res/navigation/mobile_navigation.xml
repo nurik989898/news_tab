@@ -37,5 +37,10 @@
         android:name="com.example.news_tab.ui.board.BoardFragment"
         android:label="fragment_board"
         tools:layout="@layout/fragment_board" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.news_tab.ui.auth.LoginFragment"
+        android:label="fragment_login2"
+        tools:layout="@layout/fragment_login2" />
 
 </navigation>
